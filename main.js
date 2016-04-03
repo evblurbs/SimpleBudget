@@ -152,4 +152,6 @@ let styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('main', () => FirstExperience);
+let Main = require('./app/index');
+
+AppRegistry.registerComponent('main', () => Main);

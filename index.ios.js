@@ -49,4 +49,8 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('SimpleBudget', () => SimpleBudget);
+let Main = require('./app/index');
+
+let BudgetContainer = require('./app/containers/BudgetContainer')
+
+AppRegistry.registerComponent('SimpleBudget', () => Main);
