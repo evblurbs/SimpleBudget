@@ -1,7 +1,6 @@
 'use strict'
 
 import React, {
-  Component,
   ScrollView,
   View,
   StyleSheet,
@@ -10,7 +9,7 @@ import React, {
   TouchableHighlight
 } from 'react-native';
 
-function BudgetMonth(props) {
+function BudgetMonth({budget, onUpdateBudget, submitActive, onSubmitBudget}) {
   return (
     <ScrollView style={styles.scrollContainer}>
       <Text style={styles.welcome}>
@@ -22,17 +21,17 @@ function BudgetMonth(props) {
       <View style={styles.textWrapper}>
         <TextInput
           style={styles.textInput}
-          onChangeText={props.onUpdateBudget}
-          value={props.budget}
+          onChangeText={onUpdateBudget}
+          value={budget}
           keyboardType={'numeric'} />
         <Text style={styles.textDollar}>$</Text>
       </View>
       <TouchableHighlight
         style={styles.button}
-        activeOpacity={props.submitActive ? 0.7 : 1}
+        activeOpacity={submitActive ? 0.7 : 1}
         underlayColor='#ECEFF1'
-        onPress={props.onSubmitBudget}>
-        <Text style={props.submitActive ? [styles.buttonText, styles.buttonTextActive] : styles.buttonText}>START</Text>
+        onPress={onSubmitBudget}>
+        <Text style={submitActive ? [styles.buttonText, styles.buttonTextActive] : styles.buttonText}>START</Text>
       </TouchableHighlight>
     </ScrollView>
   )

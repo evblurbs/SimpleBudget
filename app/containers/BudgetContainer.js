@@ -6,8 +6,7 @@ import React, {
 } from 'react-native';
 
 import BudgetMonth from '../components/BudgetMonth'
-
-const STORAGE_KEY = '@SimpleBudget:amount'
+import BudgetStore from '../storage/budget'
 
 class BudgetContainer extends Component {
   constructor () {
@@ -17,27 +16,17 @@ class BudgetContainer extends Component {
     }
   }
   componentDidMount() {
-    this._loadBudgetFromStorage().done()
+    this._loadBudgetFromStorage()
   }
   async _loadBudgetFromStorage() {
-    try {
-      var budget = await AsyncStorage.getItem(STORAGE_KEY)
-      if(budget !== null) {
-        this.setState({budget})
-      }
-    } catch (error) {
-      console.warn('Error with loading budget', error)
-    }
+    var budget = await BudgetStore.getBudget()
+    this.setState({budget})
   }
   handleUpdateBudget (budget) {
     this.setState({budget})
   }
   async handleSubmitBudget () {
-    try {
-      await AsyncStorage.setItem(STORAGE_KEY, this.state.budget)
-    } catch (error) {
-      console.warn('Error with _handleSaveBudget', error)
-    }
+    await BudgetStore.setBudget(this.state.budget)
   }
   render () {
     const activeButton = this.state.budget.length ? true : false;

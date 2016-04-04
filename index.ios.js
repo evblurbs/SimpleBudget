@@ -51,6 +51,4 @@ const styles = StyleSheet.create({
 
 let Main = require('./app/index');
 
-let BudgetContainer = require('./app/containers/BudgetContainer')
-
 AppRegistry.registerComponent('SimpleBudget', () => Main);
